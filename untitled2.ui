@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>871</width>
-    <height>699</height>
+    <width>606</width>
+    <height>230</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,55 +17,11 @@
    <string notr="true">background-color: rgb(26, 40, 70);</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QPushButton" name="btnnext">
+   <widget class="QPushButton" name="btnlogo">
     <property name="geometry">
      <rect>
-      <x>680</x>
-      <y>620</y>
-      <width>191</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Muller Medium</family>
-      <pointsize>15</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: rgb(255, 255, 255);</string>
-    </property>
-    <property name="text">
-     <string>Вперед</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="btnnext_2">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>620</y>
-      <width>191</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Muller Medium</family>
-      <pointsize>15</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: rgb(255, 255, 255);</string>
-    </property>
-    <property name="text">
-     <string>Назад</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="btnnext_3">
-    <property name="geometry">
-     <rect>
-      <x>310</x>
-      <y>500</y>
+      <x>190</x>
+      <y>80</y>
       <width>261</width>
       <height>31</height>
      </rect>
@@ -80,36 +36,14 @@
      <string notr="true">background-color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">
-     <string>Добавить в Избранное</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="btnfavorites">
-    <property name="geometry">
-     <rect>
-      <x>310</x>
-      <y>550</y>
-      <width>261</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Muller Medium</family>
-      <pointsize>14</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: rgb(255, 255, 255);</string>
-    </property>
-    <property name="text">
-     <string>Избранное</string>
+     <string>Получить логотип</string>
     </property>
    </widget>
    <widget class="QPushButton" name="settings">
     <property name="geometry">
      <rect>
-      <x>420</x>
-      <y>600</y>
+      <x>300</x>
+      <y>140</y>
       <width>41</width>
       <height>41</height>
      </rect>
@@ -127,17 +61,26 @@
      <string/>
     </property>
    </widget>
-   <widget class="QLabel" name="label">
+   <widget class="QPushButton" name="btnge">
     <property name="geometry">
      <rect>
-      <x>0</x>
-      <y>0</y>
-      <width>871</width>
-      <height>441</height>
+      <x>190</x>
+      <y>20</y>
+      <width>261</width>
+      <height>31</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <family>Muller Medium</family>
+      <pointsize>15</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 255, 255);</string>
+    </property>
     <property name="text">
-     <string/>
+     <string>Сгенерировать логотип</string>
     </property>
    </widget>
   </widget>
@@ -146,7 +89,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>871</width>
+     <width>606</width>
      <height>21</height>
     </rect>
    </property>

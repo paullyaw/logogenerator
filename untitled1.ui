@@ -137,6 +137,86 @@
       <string>Сферы деятельности</string>
      </property>
     </item>
+    <item>
+     <property name="text">
+      <string>Бытовые услуги</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Интернет</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Салон красоты</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Медицина</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Образование</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Общественное питание</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Производство</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Фермерство</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>СМИ</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Строительство</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Торговля</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Транспорт</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Туристический бизнес</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Развлекательная деятельность</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Организация мероприятий</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Другое</string>
+     </property>
+    </item>
    </widget>
    <widget class="QTextEdit" name="textEdit">
     <property name="geometry">
@@ -173,13 +253,13 @@
      <string>Дальше</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="btncolor">
+   <widget class="QPushButton" name="btncolor1">
     <property name="geometry">
      <rect>
-      <x>410</x>
+      <x>430</x>
       <y>330</y>
-      <width>261</width>
-      <height>31</height>
+      <width>41</width>
+      <height>41</height>
      </rect>
     </property>
     <property name="font">
@@ -192,7 +272,51 @@
      <string notr="true">background-color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">
-     <string>Палитра Цветов</string>
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btncolor2">
+    <property name="geometry">
+     <rect>
+      <x>520</x>
+      <y>330</y>
+      <width>41</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Muller Medium</family>
+      <pointsize>15</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 255, 255);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btncolor3">
+    <property name="geometry">
+     <rect>
+      <x>610</x>
+      <y>330</y>
+      <width>41</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Muller Medium</family>
+      <pointsize>15</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 255, 255);</string>
+    </property>
+    <property name="text">
+     <string/>
     </property>
    </widget>
   </widget>
