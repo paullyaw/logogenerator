@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>606</width>
-    <height>230</height>
+    <height>200</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,33 +17,11 @@
    <string notr="true">background-color: rgb(26, 40, 70);</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QPushButton" name="btnlogo">
-    <property name="geometry">
-     <rect>
-      <x>190</x>
-      <y>80</y>
-      <width>261</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Muller Medium</family>
-      <pointsize>14</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: rgb(255, 255, 255);</string>
-    </property>
-    <property name="text">
-     <string>Получить логотип</string>
-    </property>
-   </widget>
    <widget class="QPushButton" name="settings">
     <property name="geometry">
      <rect>
-      <x>300</x>
-      <y>140</y>
+      <x>280</x>
+      <y>100</y>
       <width>41</width>
       <height>41</height>
      </rect>
@@ -64,8 +42,8 @@
    <widget class="QPushButton" name="btnge">
     <property name="geometry">
      <rect>
-      <x>190</x>
-      <y>20</y>
+      <x>170</x>
+      <y>40</y>
       <width>261</width>
       <height>31</height>
      </rect>
