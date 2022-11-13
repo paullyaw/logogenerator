@@ -1,11 +1,9 @@
-import os
-import random
 import sys
 from PyQt5 import uic, QtGui
 from PyQt5.QtCore import pyqtSignal, QSize, Qt
 import sqlite3
 from PyQt5.QtGui import QPixmap, QIcon, QPainter, QColor, QFont
-from PyQt5.QtWidgets import QApplication, QMainWindow, QColorDialog, QWidget, QLabel
+from PyQt5.QtWidgets import QApplication, QMainWindow, QColorDialog, QWidget
 from PyQt5 import QtWidgets
 from random import choice
 from PIL import ImageColor
@@ -15,12 +13,8 @@ colors = []
 color_now1 = []
 color_now2 = []
 color_now3 = []
-fonts = ["Muller ExtraBold", "Muller ExtraBold Italic", "Muller Medium", "Muller Medium Italic", "Gabriola",
-         "ALS Klementina", "Yarin", "Impact", "Novartis Deco Regular",
-         "Odalisque Deco Regular", "Novartis Regular",
-         "Mysteria Nouveau", "Proserpina Deco Regular",
-         "Callysto Regular", "Topelius Modern Regular",
-         "Malterka", "Sonic 1 Title Screen cyrillic (Filled) Regular", "mr_Сonnections_and_Order Сonnections_and_Order"]
+fonts = ["Muller ExtraBold", "Muller ExtraBold Italic", "Muller Medium", "Muller Medium Italic", "Novartis",
+         "EV_Hater"]
 color_now = ""
 text = ""
 flag = False
@@ -31,24 +25,25 @@ class MainPage(QMainWindow):
         super().__init__()
         uic.loadUi('untitled.ui', self)
         im = QPixmap(f"images/pic/logo.png")
-        self.logo.setPixmap(im.scaled(230, 100, 100))
-        self.setWindowTitle("Генератор Логотипов")
-        self.setWindowIcon(QIcon("images/pic/logoicon.ico"))
-        self.setWindowFlags(Qt.CustomizeWindowHint | Qt.WindowCloseButtonHint | Qt.WindowMinimizeButtonHint)
+        self.logo.setPixmap(im.scaled(230, 100, 100))  # изменение размера картинки-логотипа
+        self.setWindowTitle("Генератор Логотипов")  # заголовок окна
+        self.setWindowIcon(QIcon("images/pic/logoicon.ico"))  # установление иконки
+        self.setWindowFlags(Qt.CustomizeWindowHint | Qt.WindowCloseButtonHint | Qt.WindowMinimizeButtonHint) # 
+        # убирается возможность масштабировать окно
         self.window = InformationPage()
         self.pushButton.clicked.connect(lambda: self.show_window(self.window))
 
     def show_window(self, window):
-        window.show()
-        self.close()
+        window.show()  # переход на следующее окно
+        self.close()  # закрытие нынешнего окна
 
 
 class ColorPage(QMainWindow):
     def __init__(self):
         super().__init__()
         global colors, color_now
-        color_pallete = QColorDialog.getColor()
-        if color_pallete.isValid():
+        color_pallete = QColorDialog.getColor()  # открытие диалогового окна выбора цвета
+        if color_pallete.isValid():  # проверка выбран ли цвет
             color_now = color_pallete.name()
             colors.append(color_pallete.name())  # Добавление основных цветов в БД
 
@@ -75,19 +70,19 @@ class InformationPage(QMainWindow):
     def choose_color(self):
         ColorPage()
         self.btncolor1.setStyleSheet(
-            "background-color: {}".format(color_now))
+            "background-color: {}".format(color_now))  # устанавливаетсязадний фон кнопки выбранным цветом
         color_now1.insert(0, color_now)
 
     def choose_color1(self):
         ColorPage()
         self.btncolor2.setStyleSheet(
-            "background-color: {}".format(color_now))
+            "background-color: {}".format(color_now))  # устанавливаетсязадний фон кнопки выбранным цветом
         color_now2.insert(0, color_now)
 
     def choose_color2(self):
         ColorPage()
         self.btncolor3.setStyleSheet(
-            "background-color: {}".format(color_now))
+            "background-color: {}".format(color_now))  # устанавливаетсязадний фон кнопки выбранным цветом
         color_now3.insert(0, color_now)
 
     def check_information(self):
@@ -118,6 +113,7 @@ class InformationPage(QMainWindow):
         nameBrand = self.lineEdit.text()
         aboutBrand = self.textEdit.toPlainText()
         sql = 'INSERT INTO inform (nameBrand, work, description, colors) VALUES (:nameBrand, "l", :aboutBrand, :colors)'
+        # добавление в базу данных
         self.cur.execute(sql, {"nameBrand": nameBrand, "aboutBrand": aboutBrand, "colors": ", ".join(colors)})
         self.db.commit()
         self.cur.close()  # Закрываем объект-курсор
@@ -127,7 +123,7 @@ class InformationPage(QMainWindow):
 class GenerationPage(QMainWindow):
     def __init__(self):
         super().__init__()
-        global fonts, text, flag
+        global fonts, text, flag, pixmap
         uic.loadUi('untitled2.ui', self)
         self.setWindowTitle("Генератор Логотипов")
         self.setWindowIcon(QIcon("images/pic/logoicon.ico"))
@@ -140,6 +136,7 @@ class GenerationPage(QMainWindow):
         self.db = sqlite3.connect("information.db")  # подключение БД
         self.cur = self.db.cursor()
         information = """SELECT * from inform"""
+        # получение информации из БД
         self.cur.execute(information)
         information = self.cur.fetchall()[-1]
         text = information[1]
@@ -148,7 +145,6 @@ class GenerationPage(QMainWindow):
 
         self.window1 = ChangeInformation()
         self.settings.clicked.connect(lambda: self.show_window1(self.window1))
-        self.btnlogo.clicked.connect(self.picture)
 
     def show_window(self, window):
         window.show()
@@ -158,13 +154,7 @@ class GenerationPage(QMainWindow):
         self.close()
 
     def show_window2(self, window2):
-        window2.close()
         window2.show()
-
-    def picture(self):
-        global flag
-        flag = True
-        Example()
 
 
 class ChangeInformation(QMainWindow):
@@ -183,23 +173,28 @@ class ChangeInformation(QMainWindow):
         self.db = sqlite3.connect("information.db")  # подключение БД
         self.cur = self.db.cursor()
         information = """SELECT * from inform"""
+        # получение информации из БД
         self.cur.execute(information)
         information = self.cur.fetchall()[-1]
-        self.lineEdit.setText(information[1])
-        self.textEdit.setText(information[3])
-        print(information)
+        self.lineEdit.setText(information[1])  # получение названия и ввода его в строку
+        self.textEdit.setText(information[3])  # получение описания и ввода его в строку
         self.btncolor1.setStyleSheet(
-            "background-color: {}".format(colors[0]))
-        self.btncolor2.setStyleSheet(
-            "background-color: {}".format(colors[1]))
-        self.btncolor3.setStyleSheet(
-            "background-color: {}".format(colors[2]))
+            "background-color: {}".format(colors[0]))  # получение цвета и его установление на задний фон
+        if len(colors) == 2:
+            self.btncolor2.setStyleSheet(
+                "background-color: {}".format(colors[1]))
+        if len(colors) == 3:
+            self.btncolor2.setStyleSheet(
+                "background-color: {}".format(colors[1]))
+            self.btncolor3.setStyleSheet(
+                "background-color: {}".format(colors[2]))
         self.btnnext.clicked.connect(self.close_event)
 
     def information(self):
         nameBrand = self.lineEdit.text()
         aboutBrand = self.textEdit.toPlainText()
         sql = 'UPDATE inform SET nameBrand = :nameBrand, description = :aboutBrand, colors = :colors'
+        # изменение информации в БД
         self.cur.execute(sql, {"nameBrand": nameBrand, "aboutBrand": aboutBrand, "colors": ", ".join(colors)})
         self.db.commit()
         self.cur.close()  # Закрываем объект-курсор
@@ -210,6 +205,7 @@ class ChangeInformation(QMainWindow):
                                                 "Вы действительно хотите изменить информацию?",
                                                 QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No,
                                                 QtWidgets.QMessageBox.No)
+        # диалоговое окно подтверждения информации
         if result == QtWidgets.QMessageBox.Yes:
             QtWidgets.QWidget.close(self)
             self.information()
@@ -230,7 +226,7 @@ class ChangeInformation(QMainWindow):
                 del colors[colors.index(el)]
         ColorPage()
         self.btncolor1.setStyleSheet(
-            "background-color: {}".format(color_now))
+            "background-color: {}".format(color_now))  # установление нового цвета
 
     def choose_color1(self):
         for el in colors:
@@ -238,7 +234,7 @@ class ChangeInformation(QMainWindow):
                 colors.pop(colors.index(el))
         ColorPage()
         self.btncolor2.setStyleSheet(
-            "background-color: {}".format(color_now))
+            "background-color: {}".format(color_now))  # установление нового цвета
 
     def choose_color2(self):
         for el in colors:
@@ -246,7 +242,7 @@ class ChangeInformation(QMainWindow):
                 del colors[colors.index(el)]
         ColorPage()
         self.btncolor3.setStyleSheet(
-            "background-color: {}".format(color_now))
+            "background-color: {}".format(color_now))  # установление нового цвета
 
 
 class Example(QWidget):
@@ -255,11 +251,8 @@ class Example(QWidget):
         global flag
         self.initUI()
         global text, colors
-        self.label = QLabel()
         if ChangeInformation():
             self.close()
-        if flag:
-            self.pictute()
         flag = False
 
     def initUI(self):
@@ -270,16 +263,16 @@ class Example(QWidget):
         self.show()
 
     def paintEvent(self, event):
-        qp = QPainter()
+        qp = QPainter()  # создание "события" рисованиия
         qp.begin(self)
         self.drawText(event, qp)
         qp.end()
 
     def drawText(self, event, qp):
-        color = ImageColor.getcolor(choice(colors), "RGB")
-        qp.setPen(QColor(*color))
-        qp.setFont(QFont(choice(fonts), 80))
-        qp.drawText(event.rect(), Qt.AlignCenter, self.text)
+        color = ImageColor.getcolor(choice(colors), "RGB")  # hex меняется в rgb 
+        qp.setPen(QColor(*color))  # установление цвета
+        qp.setFont(QFont(choice(fonts), 70))  # выбор шрифта и его величины 
+        qp.drawText(event.rect(), Qt.AlignCenter, self.text)  # отрисовка
         qp.end()
 
 
